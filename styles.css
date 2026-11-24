@@ -1,0 +1,133 @@
+:root {
+  --azul: #0B2545;
+  --azul-2: #13315C;
+  --azul-claro: #E8EEF7;
+  --verde: #1E8E3E;
+  --verde-claro: #E6F4EA;
+  --rojo: #B3261E;
+  --rojo-claro: #FCE8E6;
+  --ambar: #8A5A00;
+  --ambar-claro: #FFF4D6;
+  --fondo: #F3F6FA;
+  --texto: #1A2433;
+  --texto-2: #5B6878;
+  --borde: #CBD5E1;
+  --radio: 12px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.4;
+  -webkit-text-size-adjust: 100%;
+}
+
+.barra {
+  background: var(--azul);
+  color: #fff;
+  padding: calc(14px + env(safe-area-inset-top)) 16px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 4px solid var(--verde);
+}
+
+.logo {
+  width: 44px; height: 44px; flex: none;
+  border-radius: 10px;
+  background: var(--azul-2);
+  border: 2px solid var(--verde);
+  display: grid; place-items: center;
+  font-weight: 800; font-size: 17px; letter-spacing: .5px;
+}
+
+.marca { display: flex; flex-direction: column; min-width: 0; }
+.marca b { font-size: 18px; letter-spacing: .6px; }
+.marca span { font-size: 13px; color: #B8C7DC; letter-spacing: .4px; }
+
+.conexion {
+  margin-left: auto; flex: none;
+  font-size: 12px; font-weight: 700;
+  padding: 4px 10px; border-radius: 999px;
+  background: var(--verde); color: #fff;
+}
+.conexion.off { background: var(--rojo); }
+
+main { max-width: 560px; margin: 0 auto; padding: 16px 16px calc(32px + env(safe-area-inset-bottom)); }
+
+.tarjeta {
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 16px;
+  box-shadow: 0 1px 2px rgba(11, 37, 69, .06);
+}
+
+.aviso-prueba {
+  font-size: 13px; color: var(--ambar);
+  background: var(--ambar-claro);
+  border-radius: 8px; padding: 8px 12px; margin-bottom: 14px;
+}
+
+.campo { margin-bottom: 16px; }
+.campo label { display: block; font-weight: 700; font-size: 15px; margin-bottom: 6px; color: var(--azul); }
+.campo small { color: var(--texto-2); font-size: 13px; }
+
+input, select, textarea {
+  width: 100%;
+  font: inherit; font-size: 17px; /* ≥16px evita el zoom automático en iPhone */
+  color: var(--texto);
+  background: #fff;
+  border: 2px solid var(--borde);
+  border-radius: 10px;
+  padding: 12px;
+  min-height: 52px;
+  -webkit-appearance: none; appearance: none;
+}
+select {
+  background-image: linear-gradient(45deg, transparent 50%, var(--azul) 50%), linear-gradient(135deg, var(--azul) 50%, transparent 50%);
+  background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%;
+  background-size: 6px 6px; background-repeat: no-repeat;
+  padding-right: 40px;
+}
+textarea { min-height: 96px; resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--azul-2); box-shadow: 0 0 0 3px rgba(19, 49, 92, .18); }
+input:disabled, select:disabled, textarea:disabled { background: var(--azul-claro); color: var(--texto-2); }
+
+.fila-check { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--texto-2); margin-top: 8px; }
+.fila-check input { width: 22px; height: 22px; min-height: 0; padding: 0; -webkit-appearance: checkbox; appearance: auto; }
+
+.boton {
+  display: block; width: 100%;
+  min-height: 64px;
+  border: 0; border-radius: var(--radio);
+  background: var(--verde); color: #fff;
+  font: inherit; font-size: 19px; font-weight: 800; letter-spacing: .8px;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #146C2E;
+  touch-action: manipulation;
+}
+.boton:active { transform: translateY(2px); box-shadow: 0 1px 0 #146C2E; }
+.boton:disabled { background: #8FA3B8; box-shadow: none; cursor: default; }
+.boton.secundario { background: #fff; color: var(--azul); border: 2px solid var(--azul); box-shadow: none; min-height: 52px; font-size: 16px; margin-top: 10px; }
+
+.estado {
+  margin-top: 16px; padding: 14px 16px;
+  border-radius: var(--radio);
+  font-weight: 700;
+  display: none;
+}
+.estado.visible { display: block; }
+.estado.enviando { background: var(--azul-claro); color: var(--azul); }
+.estado.ok { background: var(--verde-claro); color: #0D5322; border-left: 6px solid var(--verde); }
+.estado.error { background: var(--rojo-claro); color: var(--rojo); border-left: 6px solid var(--rojo); }
+.estado .detalle { display: block; font-weight: 400; font-size: 14px; margin-top: 4px; word-break: break-word; }
+
+.pie { text-align: center; color: var(--texto-2); font-size: 12px; margin-top: 18px; }
+
+.oculto { display: none !important; }

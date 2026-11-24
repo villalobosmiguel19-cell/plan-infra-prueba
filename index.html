@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>PLAN INFRA – PRUEBA MÓVIL</title>
+  <meta name="theme-color" content="#0B2545">
+  <meta name="description" content="Prueba piloto de registro móvil hacia Google Sheets.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <!-- iPhone: pantalla de inicio -->
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Plan Infra">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- FORMULARIO:INICIO -->
+  <header class="barra">
+    <div class="logo" aria-hidden="true">PI</div>
+    <div class="marca">
+      <b>PLAN INFRA</b>
+      <span>PRUEBA MÓVIL</span>
+    </div>
+    <span id="conexion" class="conexion">EN LÍNEA</span>
+  </header>
+
+  <main>
+    <form id="formulario" class="tarjeta" novalidate autocomplete="off">
+      <div class="aviso-prueba">Prueba piloto · usa solo datos ficticios.</div>
+
+      <div class="campo">
+        <label for="operador">Nombre del operador</label>
+        <input id="operador" name="operador" type="text" maxlength="60" autocomplete="name" required>
+      </div>
+
+      <div class="campo">
+        <label for="fecha">Fecha y hora</label>
+        <input id="fecha" name="fecha" type="datetime-local" required>
+      </div>
+
+      <div class="campo">
+        <label for="tipo">Tipo de registro</label>
+        <select id="tipo" name="tipo" required>
+          <option value="" disabled selected>Selecciona…</option>
+          <option>Prueba de calderas</option>
+          <option>Prueba de cloración</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="valor">Valor numérico</label>
+        <input id="valor" name="valor" type="text" inputmode="decimal" pattern="-?[0-9]+([.,][0-9]+)?" maxlength="20" required>
+        <small>Usa punto o coma para decimales.</small>
+      </div>
+
+      <div class="campo">
+        <label for="observaciones">Observaciones</label>
+        <textarea id="observaciones" name="observaciones" maxlength="500"></textarea>
+      </div>
+
+      <div class="campo">
+        <label for="codigo">Código de acceso</label>
+        <input id="codigo" name="codigo" type="password" maxlength="64" autocomplete="off" required>
+        <label class="fila-check"><input id="recordar" type="checkbox"> Recordar en este teléfono</label>
+      </div>
+
+      <button id="btnEnviar" class="boton" type="submit">ENVIAR REGISTRO</button>
+      <button id="btnDescartar" class="boton secundario oculto" type="button">Descartar registro pendiente</button>
+
+      <div id="estado" class="estado" aria-live="polite"></div>
+    </form>
+    <p class="pie">Plan Infra · prueba independiente · Google Sheets</p>
+  </main>
+  <!-- FORMULARIO:FIN -->
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js').catch(function (e) { console.warn('SW no registrado:', e); });
+      });
+    }
+  </script>
+</body>
+</html>
